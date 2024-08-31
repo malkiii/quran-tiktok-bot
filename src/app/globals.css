@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #0001 transparent;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+    @apply antialiased min-h-dvh;
+  }
+
+  article {
+    @apply prose prose-neutral mx-auto;
+  }
+}
