@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+export const revalidate = 0;
+
 export function GET() {
   createRandomIntegerFile();
 
