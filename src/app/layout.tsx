@@ -7,6 +7,7 @@ const inter = Inter({ display: 'swap', subsets: ['latin'], preload: true });
 export const metadata: Metadata = {
   title: 'Quran Tiktok Bot',
   icons: [{ rel: 'icon', url: '/logo.png' }],
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
