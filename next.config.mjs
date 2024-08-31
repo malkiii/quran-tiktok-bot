@@ -3,7 +3,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/get',
+        source: '/file.txt',
         headers: [
           {
             key: 'Cache-Control',
