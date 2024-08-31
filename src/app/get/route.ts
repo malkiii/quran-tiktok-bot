@@ -3,7 +3,11 @@ import path from 'path';
 import { type NextRequest } from 'next/server';
 
 export function GET(_: NextRequest) {
-  return Response.json(getNumberFromFile());
+  const content = getNumberFromFile();
+
+  console.info({ content });
+
+  return Response.json(content);
 }
 
 function getNumberFromFile() {
