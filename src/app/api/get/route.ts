@@ -5,7 +5,7 @@ import { type NextRequest } from 'next/server';
 export function GET(_: NextRequest) {
   const content = getNumberFromFile();
 
-  console.info({ content });
+  console.log({ content });
 
   return Response.json(content);
 }
