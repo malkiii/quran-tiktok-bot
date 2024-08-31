@@ -10,8 +10,6 @@ WORKDIR /app
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-RUN pnpm build
-
 EXPOSE 3000
 
 CMD ["pnpm", "start"]
