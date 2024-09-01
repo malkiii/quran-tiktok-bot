@@ -1,48 +1,27 @@
-import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import expressLayouts from 'express-ejs-layouts';
 
 const app = express();
 
+// Parse JSON bodies
 app.use(express.json());
+
+// Set Templating Engine
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+app.set('views', path.join(process.cwd(), 'src/views'));
+app.set('layout', 'layout');
 
 // Status check
 app.get('/status', (_, res) => res.status(200).end());
 
 // Serve static files
-// app.use(
-//   express.static('public', {
-//     index: false,
-//     extensions: ['jpg', 'png', 'svg', 'woff2', 'xml', 'txt', 'json'],
-//   }),
-// );
-
-const filePath = path.join(process.cwd(), 'public/file.txt');
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // Routes
-app.use('/get', (_, res) => {
-  const content = getNumberFromFile();
-
-  return res.send(content);
+app.get('/', (_, res) => {
+  res.render('home', { title: 'Quran TikTok Bot' });
 });
-
-app.use('/set', (_, res) => {
-  createRandomIntegerFile();
-
-  return res.send('Done!');
-});
-
-function getNumberFromFile() {
-  if (!fs.existsSync(filePath)) return null;
-
-  return fs.readFileSync(filePath, 'utf-8');
-}
-
-function createRandomIntegerFile() {
-  const randomInteger = Math.floor(Math.random() * 1000000);
-
-  // Write the random integer to the file
-  fs.writeFileSync(filePath, randomInteger.toString());
-}
 
 export default app;
