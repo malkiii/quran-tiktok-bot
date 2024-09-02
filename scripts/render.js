@@ -34,7 +34,7 @@ await renderMedia({
   composition,
   serveUrl: bundleLocation,
   codec: 'h264',
-  outputLocation: `out/${compositionId}.mp4`,
+  outputLocation: `tmp/${compositionId}.mp4`,
   inputProps,
 });
 
