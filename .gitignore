@@ -1,5 +1,6 @@
 # build directory
 dist
+out
 
 # environment variable files
 .env

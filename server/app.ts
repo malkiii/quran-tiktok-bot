@@ -10,7 +10,6 @@ app.use(express.json());
 // Set Templating Engine
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.set('views', path.join(process.cwd(), 'src/views'));
 app.set('layout', 'layout');
 
 // Status check
