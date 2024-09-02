@@ -1,6 +1,7 @@
 # build directory
 dist
 out
+public/*.html
 
 # environment variable files
 .env

@@ -10,7 +10,7 @@ const compositionId = 'HelloWorld';
 // You only have to create a bundle once, and you may reuse it
 // for multiple renders that you can parametrize using input props.
 const bundleLocation = await bundle({
-  entryPoint: require.resolve('./index.ts'),
+  entryPoint: require.resolve('../remotion/index.ts'),
   // If you have a webpack override in remotion.config.ts, pass it here as well.
   webpackOverride: config => config,
 });
@@ -34,7 +34,7 @@ await renderMedia({
   composition,
   serveUrl: bundleLocation,
   codec: 'h264',
-  outputLocation: `public/${compositionId}.mp4`,
+  outputLocation: `out/${compositionId}.mp4`,
   inputProps,
 });
 

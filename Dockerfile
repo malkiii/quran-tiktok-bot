@@ -31,4 +31,4 @@ RUN pnpm remotion:init
 
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "remotion:render"]

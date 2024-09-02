@@ -1,13 +1,5 @@
 import { spring } from 'remotion';
-import {
-  AbsoluteFill,
-  interpolate,
-  Sequence,
-  useCurrentFrame,
-  useVideoConfig,
-  Audio,
-  staticFile,
-} from 'remotion';
+import { AbsoluteFill, interpolate, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Logo } from './HelloWorld/Logo';
 import { Subtitle } from './HelloWorld/Subtitle';
 import { Title } from './HelloWorld/Title';
@@ -64,7 +56,6 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
           <Subtitle />
         </Sequence>
       </AbsoluteFill>
-      <Audio src={staticFile('audio.mp3')} />
     </AbsoluteFill>
   );
 };
