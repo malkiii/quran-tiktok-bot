@@ -65,7 +65,7 @@ const createHtmlPage = (title: string, content: string) => `\
     <style type="text/tailwindcss">
       @layer base {
         body {
-          font-family: 'Inter', inherit;
+          font-family: 'Inter';
           -webkit-font-smoothing:antialiased;
           -moz-osx-font-smoothing:grayscale;
           -webkit-tap-highlight-color:transparent;
