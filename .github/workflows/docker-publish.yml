@@ -37,5 +37,5 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          tags: $DOCKERHUB_USERNAME/$REPO_NAME:latest
+          tags: '$DOCKERHUB_USERNAME/$REPO_NAME:latest'
           push: true
