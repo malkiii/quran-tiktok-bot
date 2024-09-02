@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Docker Registry
-      url: 'https://hub.docker.com/r/${{ env.IMAGE_TAG }}'
+      url: https://hub.docker.com/r/malkiii/quran-tiktok-bot
 
     steps:
       - uses: actions/checkout@v4
