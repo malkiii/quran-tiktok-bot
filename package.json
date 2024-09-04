@@ -7,12 +7,11 @@
     "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0",
     "remotion:init": "remotion browser ensure",
     "remotion:studio": "remotion studio",
-    "remotion:render": "node scripts/render.js"
+    "remotion:render": "remotion render HelloWorld out/video.mp4"
   },
   "dependencies": {
-    "@remotion/bundler": "4.0.207",
+    "@distube/ytdl-core": "^4.14.4",
     "@remotion/cli": "4.0.207",
-    "@remotion/renderer": "4.0.207",
     "@remotion/zod-types": "4.0.207",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,17 +20,12 @@
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.207",
-    "@types/fs-extra": "^11.0.4",
-    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20.5.6",
     "@types/react": "^18.3.5",
     "@types/web": "^0.0.159",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "eslint": "^8.48.0",
-    "fs-extra": "^11.2.0",
-    "gray-matter": "^4.0.3",
-    "markdown-it": "^14.1.0",
     "prettier": "^3.3.3",
     "tsx": "^4.19.0",
     "typescript": "^5.2.2"

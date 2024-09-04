@@ -1,7 +1,6 @@
 # build directory
 dist
 out
-public/*.html
 
 # environment variable files
 .env
@@ -16,6 +15,7 @@ public/*.html
 # tmp and .logs
 tmp
 *.log
+*.txt
 
 # package managers
 node_modules
