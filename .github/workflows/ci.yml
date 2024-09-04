@@ -1,0 +1,31 @@
+name: Download YouTube Video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download-video:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - run: pnpm install
+
+      - name: Run download script
+        run: node download.js
+
+      - name: Check if video exists
+        run: |
+          if [ -f "./assets/video.mp4" ]; then
+            echo "Video exists."
+          else
+            echo "Video does not exist."
+            exit 1
+          fi
