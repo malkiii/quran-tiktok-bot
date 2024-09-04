@@ -19,6 +19,8 @@ jobs:
       - run: pnpm install
 
       - name: Run download script
+        env:
+          YOUTUBE_COOKIES: ${{ secrets.YOUTUBE_COOKIES }}
         run: node download.js
 
       - name: Check if video exists

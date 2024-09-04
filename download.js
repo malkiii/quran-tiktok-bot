@@ -1,7 +1,11 @@
 import fs from 'fs';
 import ytdl from '@distube/ytdl-core';
 
+// eslint-disable-next-line no-undef
+const cookies = JSON.parse(process.env.YOUTUBE_COOKIES);
+
 ytdl('https://www.youtube.com/watch?v=Z5CbAa-yuZ0', {
+  agent: ytdl.createAgent(cookies),
   filter: 'audioandvideo',
   quality: 'highest',
   format: 'mp4',
