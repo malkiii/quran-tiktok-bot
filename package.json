@@ -1,6 +1,7 @@
 {
   "name": "quran-tiktok-bot",
-  "private": false,
+  "version": "1.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "build:pages": "tsx scripts/build-pages.ts",
@@ -13,6 +14,7 @@
     "@distube/ytdl-core": "^4.14.4",
     "@remotion/cli": "4.0.207",
     "@remotion/zod-types": "4.0.207",
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remotion": "4.0.207",
