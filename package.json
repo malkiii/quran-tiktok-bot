@@ -6,27 +6,30 @@
   "scripts": {
     "build:pages": "tsx scripts/build-pages.ts",
     "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0",
-    "remotion:init": "remotion browser ensure",
     "remotion:studio": "remotion studio",
-    "remotion:render": "remotion render HelloWorld out/video.mp4"
+    "remotion:chrome": "remotion browser ensure",
+    "remotion:render": "remotion render tiktok-video out/video.mp4"
   },
   "dependencies": {
-    "@distube/ytdl-core": "^4.14.4",
-    "@remotion/cli": "4.0.207",
-    "@remotion/zod-types": "4.0.207",
+    "@remotion/bundler": "4.0.209",
+    "@remotion/cli": "4.0.209",
+    "@remotion/media-utils": "4.0.209",
+    "@remotion/renderer": "4.0.209",
+    "@remotion/zod-types": "4.0.209",
     "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "remotion": "4.0.207",
+    "remotion": "4.0.209",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@remotion/eslint-config": "4.0.207",
+    "@remotion/eslint-config": "4.0.209",
     "@types/node": "^20.5.6",
     "@types/react": "^18.3.5",
     "@types/web": "^0.0.159",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
+    "dotenv": "^16.4.5",
     "eslint": "^8.48.0",
     "prettier": "^3.3.3",
     "tsx": "^4.19.0",
