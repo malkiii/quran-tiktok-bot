@@ -12,6 +12,7 @@ def download_youtube_video(url, output_path="./assets/video.mp4"):
     # Options for yt-dlp
     ydl_opts = {
         'outtmpl': output_path,  # Set the output file name template
+        'skip_unavailable_fragments': False,  # Do not skip fragments
         'noplaylist': True,  # Disable playlist download
     }
 
