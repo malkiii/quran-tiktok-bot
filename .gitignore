@@ -12,10 +12,10 @@ out
 .env.test.local
 .env.production.local
 
-# tmp and .logs
+# tmp files, logs, and input-props
+_*
 tmp
 *.log
-*.txt
 input-props.json
 
 # package managers
@@ -32,7 +32,6 @@ yarn-error.log*
 # coverage 
 coverage
 logs
-test.js
 
 # IDEs
 .vscode

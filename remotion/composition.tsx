@@ -1,8 +1,6 @@
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Video } from 'remotion';
-import { loadFont } from '@remotion/google-fonts/Inter';
+import { useAudioData, visualizeAudio } from '@remotion/media-utils';
 import type { CompositionProps } from './schema';
-
-const { fontFamily: Inter } = loadFont();
 
 export const VideoComposition: React.FC<CompositionProps> = props => {
   // A <AbsoluteFill> is just a absolutely positioned <div>!
@@ -10,7 +8,7 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
     <AbsoluteFill style={{ padding: 0, margin: 0 }}>
       <Video
         loop
-        volume={0.2}
+        volume={0.19}
         src={props.background}
         style={{
           position: 'absolute',
@@ -27,6 +25,7 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
           display: 'flex',
           justifyContent: 'center',
           background: 'rgba(0,0,0,0.4)',
+          color: 'white',
         }}
       >
         <AbsoluteFill
@@ -37,7 +36,7 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
             left: '0',
             top: '50%',
             mixBlendMode: 'screen',
-            transform: 'translateY(-70%)',
+            transform: 'translateY(-50%)',
           }}
         >
           <Video
@@ -50,83 +49,72 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
               objectFit: 'cover',
               objectPosition: 'center',
               overflow: 'hidden',
+              marginBottom: '4rem',
             }}
           />
-          <ProgressBar />
+          <AudioVisualizer />
         </AbsoluteFill>
       </AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
-const ProgressBar: React.FC = () => {
+const AudioVisualizer: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const config = useVideoConfig();
 
-  const totalSeconds = durationInFrames / fps;
-  const time = interpolate(frame, [0, durationInFrames], [0, totalSeconds]);
+  const props = config.props as CompositionProps;
+  const audioData = useAudioData(props.croma);
 
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
+  if (!audioData) return null;
 
-  const progress = (seconds / totalSeconds) * 100;
+  const visualization = visualizeAudio({
+    frame,
+    fps: config.fps,
+    numberOfSamples: 64,
+    audioData,
+  });
 
+  // Render a bar chart for each frequency, the higher the amplitude,
+  // the longer the bar
   return (
     <AbsoluteFill
       style={{
         position: 'relative',
-        display: 'grid',
-        gap: '2rem',
-        padding: '2rem 0',
-        height: 'fit-content',
-        width: '60%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 200,
+        gap: '1rem',
         margin: '0 auto',
-        color: 'white',
       }}
     >
-      <AbsoluteFill
-        style={{
-          position: 'relative',
-          background: '#FFF3',
-          width: '100%',
-          height: 8,
-          borderRadius: 10,
-        }}
-      >
-        <AbsoluteFill
-          style={{
-            position: 'absolute',
-            background: 'currentColor',
-            width: `${progress}%`,
-            height: '100%',
-            borderRadius: 'inherit',
-          }}
-        >
-          <AbsoluteFill
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '100%',
-              transform: 'translateX(-50%) translateY(-50%)',
-              background: 'inherit',
-              width: 24,
-              height: 24,
-              borderRadius: '50%',
-              boxShadow: '0 0 0 8px #FFF5',
-            }}
-          />
-        </AbsoluteFill>
-      </AbsoluteFill>
-      <AbsoluteFill
-        style={{
-          position: 'relative',
-          height: 'auto',
-          fontFamily: Inter,
-          fontSize: '1.75rem',
-        }}
-      >
-        {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
-      </AbsoluteFill>
+      {visualization
+        .reverse()
+        .slice(44)
+        .map(v => (
+          <VisualizerBar height={v} />
+        ))}
+      {visualization
+        .reverse()
+        .slice(1, 21)
+        .map(v => (
+          <VisualizerBar height={v} />
+        ))}
     </AbsoluteFill>
+  );
+};
+
+const VisualizerBar: React.FC<{ height: number }> = ({ height }) => {
+  return (
+    <div
+      style={{
+        width: 5,
+        height: height * 1000,
+        backgroundColor: 'currentcolor',
+        borderRadius: 10,
+      }}
+    />
   );
 };
