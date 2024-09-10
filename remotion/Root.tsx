@@ -16,8 +16,8 @@ export const RemotionRoot: React.FC = () => {
       durationInFrames={FPS * 5}
       schema={compositionSchema}
       defaultProps={{
-        croma: staticFile('_croma_3.mp4'),
-        background: staticFile('_background_3.mp4'),
+        croma: staticFile('croma.mp4'),
+        background: staticFile('background.mp4'),
       }}
       calculateMetadata={async ({ props }) => {
         const data = await getVideoMetadata(props.croma);
