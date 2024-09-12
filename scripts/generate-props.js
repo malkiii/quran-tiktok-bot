@@ -1,8 +1,8 @@
-import 'dotenv/config';
-
 import fs from 'fs';
 import axios from 'axios';
 import { ensureBrowser } from '@remotion/renderer';
+
+import 'dotenv/config';
 
 await ensureBrowser();
 

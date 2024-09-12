@@ -10,6 +10,7 @@
   ],
   "rules": {
     "no-undef": "off",
+    "camelcase": "off",
     "@typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -15,7 +15,7 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
           inset: 0,
           width: '100%',
           height: '100%',
-          filter: 'blur(1.25px) brightness(1.2)',
+          filter: 'brightness(1.16)',
         }}
       />
       <AbsoluteFill
