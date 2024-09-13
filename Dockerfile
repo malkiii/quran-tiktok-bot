@@ -29,7 +29,4 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 # Install Chrome
 RUN pnpm remotion:chrome
 
-# Generate composition props
-RUN node scripts/generate-props.js
-
 CMD ["pnpm", "remotion:render"]

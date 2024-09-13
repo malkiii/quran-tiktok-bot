@@ -4,11 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:pages": "tsx scripts/build-pages.ts",
-    "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0",
     "remotion:studio": "remotion studio",
     "remotion:chrome": "remotion browser ensure",
-    "remotion:render": "remotion render tiktok-video out/video.mp4"
+    "remotion:render": "remotion render tiktok-video out/video.mp4",
+    "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.209",
