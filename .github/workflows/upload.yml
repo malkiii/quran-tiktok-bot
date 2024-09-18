@@ -1,0 +1,40 @@
+name: Upload to TikTok inbox
+
+on:
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@main
+      - uses: pnpm/action-setup@v4
+
+      - name: Install FFmpeg
+        run: sudo apt update && sudo apt install -y ffmpeg
+
+      - name: Use Node.js
+        uses: actions/setup-node@main
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies and Linting
+        run: pnpm install && pnpm lint
+
+      - name: Initialize Chrome
+        run: pnpm remotion:chrome
+
+      - name: Render video.mp4
+        env:
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+        run: |
+          node remotion/generate-props.js
+          pnpm remotion:render -- --props="./input-props.json"
+
+      - name: Upload to TikTok
+        run: tsx scripts/upload-to-tiktok.ts
+        env:
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}

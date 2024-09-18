@@ -17,25 +17,20 @@ async function main() {
     const accessToken = await getAccessToken();
 
     // eslint-disable-next-line no-unreachable
-    console.log('Preparing to post the video...');
+    console.log('Preparing to upload the video...');
 
     /**
-     * Post the video
-     * @see https://developers.tiktok.com/doc/content-posting-api-get-started#post_a_video
+     * Upload the video
+     * @see https://developers.tiktok.com/doc/content-posting-api-get-started-upload-content#upload_a_video
      */
     const postResponse = await axios({
       method: 'POST',
-      url: 'https://open.tiktokapis.com/v2/post/publish/video/init/',
+      url: 'https://open.tiktokapis.com/v2/post/publish/inbox/video/init/',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json; charset=UTF-8',
       },
       data: {
-        post_info: {
-          title: '#القران_الكريم #القرآن #راحة_نفسية #quran #quran_alkarim #allah #islam',
-          // privacy_level: 'PUBLIC_TO_EVERYONE',
-          privacy_level: 'SELF_ONLY',
-        },
         source_info: {
           source: 'FILE_UPLOAD',
           video_size: fileSize,
@@ -45,7 +40,7 @@ async function main() {
       },
     });
 
-    console.log('Video post initiated!');
+    console.log('Video post initiated! 📦\n');
 
     // Parse the response data
     const postData = z
@@ -61,12 +56,10 @@ async function main() {
 
     await uploadVideoInChunks(postData.upload_url, video, chunkSize);
 
-    console.log('Video uploaded successfully! ✅');
-
     // Check posting status every 5 seconds
     let postProcess = await checkStatus(postData.publish_id, accessToken);
     while (postProcess.status === 'PROCESSING_UPLOAD') {
-      console.log('Processing upload...');
+      console.log('Processing...');
 
       // eslint-disable-next-line no-promise-executor-return
       await new Promise(res => setTimeout(res, 5000));
@@ -74,20 +67,18 @@ async function main() {
       postProcess = await checkStatus(postData.publish_id, accessToken);
     }
 
-    if (postProcess.status === 'PUBLISH_COMPLETE') {
-      const username = 'holy.quran.clips';
-      const postId = postProcess.publicaly_available_post_id.at(0);
-
+    if (postProcess.status === 'SEND_TO_USER_INBOX') {
       console.log(
-        '\nVideo posted successfully! 🎉\n' +
-          `See https://www.tiktok.com/@${username}/video/${postId}`,
+        `\nVideo uploaded successfully! 🎉\nSee https://www.tiktok.com/tiktokstudio/upload`,
       );
     } else {
-      console.error('Failed to post the video:', postProcess.fail_reason);
+      console.error('Failed to upload the video:', postProcess.fail_reason);
     }
   } catch (error) {
     if (!(error instanceof axios.AxiosError)) throw error;
-    throw new Error(`Failed with status ${error.response?.status}: ${error.response?.data}`);
+    throw new Error(
+      `\n❌ Failed with status ${error.response?.status}: ${JSON.stringify(error.response?.data, null, 2)}`,
+    );
   }
 }
 
@@ -160,7 +151,7 @@ async function checkStatus(publishId: string, accessToken: string) {
         )
         .or(
           z.object({
-            status: z.literal('PUBLISH_COMPLETE'),
+            status: z.literal('SEND_TO_USER_INBOX'),
             publicaly_available_post_id: z.array(z.number()).default([]),
           }),
         ),
