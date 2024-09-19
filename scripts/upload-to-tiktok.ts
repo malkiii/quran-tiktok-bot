@@ -69,7 +69,7 @@ async function main() {
 
     if (postProcess.status === 'SEND_TO_USER_INBOX') {
       console.log(
-        `\nVideo uploaded successfully! 🎉\nSee https://www.tiktok.com/tiktokstudio/upload`,
+        `\nVideo uploaded successfully! 🎉\nSee https://www.tiktok.com/@holy.quran.clips`,
       );
     } else {
       console.error('Failed to upload the video:', postProcess.fail_reason);
@@ -111,10 +111,12 @@ function getVideoSize(video: string) {
   // Get the file size
   const fileStats = fs.statSync(video);
   const fileSize = fileStats.size;
-  const chunkSize = 10_000_000;
+  // const chunkSize = 10_000_000;
+  const chunkSize = fileSize;
 
   // Calculate the total number of chunks
-  const totalChunks = Math.floor(fileSize / chunkSize);
+  // const totalChunks = Math.floor(fileSize / chunkSize);
+  const totalChunks = 1;
 
   return { fileSize, chunkSize, totalChunks };
 }
