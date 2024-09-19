@@ -43,12 +43,14 @@ export const VideoComposition: React.FC<CompositionProps> = props => {
             src={props.croma}
             volume={f => interpolate(f, [0, 25], [0, 1])}
             style={{
-              width: '100%',
+              width: '90%',
               height: 'auto',
               aspectRatio: '16 / 7',
               objectFit: 'cover',
               objectPosition: 'center',
               overflow: 'hidden',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               marginBottom: '4rem',
             }}
           />
@@ -68,12 +70,17 @@ const AudioVisualizer: React.FC = () => {
 
   if (!audioData) return null;
 
+  const numberOfSamples = 64;
+
   const visualization = visualizeAudio({
     frame,
     fps: config.fps,
-    numberOfSamples: 64,
+    numberOfSamples,
     audioData,
   });
+
+  const leftBars = 45;
+  const rightBars = numberOfSamples - leftBars;
 
   // Render a bar chart for each frequency, the higher the amplitude,
   // the longer the bar
@@ -92,13 +99,13 @@ const AudioVisualizer: React.FC = () => {
     >
       {visualization
         .reverse()
-        .slice(44)
+        .slice(leftBars)
         .map(v => (
           <VisualizerBar height={v} />
         ))}
       {visualization
         .reverse()
-        .slice(1, 21)
+        .slice(1, rightBars + 1)
         .map(v => (
           <VisualizerBar height={v} />
         ))}
