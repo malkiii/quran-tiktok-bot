@@ -67,7 +67,7 @@ python3 scripts/upload-videos.py assets/background
 pnpm remotion:studio
 ```
 
-3. Render your video to `out/video.mp4` using the **default props** using:
+3. Render your video to `out/video.mp4` using:
 
 ```sh
 pnpm remotion:render
@@ -76,8 +76,8 @@ pnpm remotion:render
 4. if you want to generate props based on your Cloudinary assets, use:
 
 ```sh
-node remotion/generate-props.js
-pnpm remotion:render --props="./input-props.json"
+node scripts/download-assets.js
+pnpm remotion:render
 ```
 
 ## 🚀 Upload to TikTok
