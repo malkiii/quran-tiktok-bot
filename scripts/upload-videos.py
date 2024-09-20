@@ -37,7 +37,8 @@ if __name__ == "__main__":
                 file_path,
                 folder=f"quran-{folder_name}s",
                 public_id=public_id,
-                resource_type="video"
+                resource_type="video",
+                overwrite=True
             )
 
             # Get the URL of the uploaded video
