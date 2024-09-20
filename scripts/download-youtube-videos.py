@@ -37,7 +37,7 @@ if __name__ == "__main__":
                 if os.path.exists(file_path):
                     continue
 
-                print(f'- Downloading "{link}" :')
+                print(f'[{num}] Downloading "{link}" :')
 
                 # Download the video
                 download_youtube_video(link, file_path)

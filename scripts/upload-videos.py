@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     for file in os.listdir(folder_path):
         # Check if the file is an MP4 video
-        if file.endswith('.mp4'):
+        if file.endswith('.mp4') and not file.startswith("up_"):
             file_name = os.path.splitext(file)[0]
             file_path = os.path.join(folder_path, file)
 
@@ -44,4 +44,7 @@ if __name__ == "__main__":
             url = CloudinaryImage(public_id).build_url()
 
             print('✅ Video uploaded to:', url)
+
+            # Rename the file to avoid re-uploading it
+            os.rename(file_path, os.path.join(folder_path, f"up_{file}"))
                 
