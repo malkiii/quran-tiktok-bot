@@ -37,7 +37,7 @@ jobs:
           pnpm remotion:render -- --props="./input-props.json"
 
       - name: Upload to TikTok
-        run: tsx scripts/upload-to-tiktok.ts
+        run: pnpm tsx scripts/upload-to-tiktok.ts
         env:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
