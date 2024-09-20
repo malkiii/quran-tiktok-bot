@@ -6,6 +6,9 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
+    environment:
+      name: TikTok
+      url: https://www.tiktok.com/@holy.quran.clips
 
     steps:
       - uses: actions/checkout@master
