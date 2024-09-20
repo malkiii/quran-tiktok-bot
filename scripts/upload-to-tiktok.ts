@@ -69,7 +69,7 @@ async function main() {
 
     if (postProcess.status === 'SEND_TO_USER_INBOX') {
       console.log(
-        `\nVideo uploaded successfully! 🎉\nSee https://www.tiktok.com/@holy.quran.clips`,
+        `\nVideo uploaded successfully! 🚀\nSee https://www.tiktok.com/@holy.quran.clips`,
       );
     } else {
       console.error('Failed to upload the video:', postProcess.fail_reason);

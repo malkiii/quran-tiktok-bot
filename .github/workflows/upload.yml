@@ -2,6 +2,9 @@ name: Upload to TikTok inbox
 
 on:
   workflow_dispatch:
+  schedule:
+    # Runs at 18:00 (6:00 PM) UTC every day
+    - cron: '0 18 * * *'
 
 jobs:
   post:
@@ -34,7 +37,7 @@ jobs:
           RUN_COUNT: ${{ github.run_number }}
         run: |
           node remotion/generate-props.js
-          pnpm remotion:render -- --props="./input-props.json"
+          pnpm remotion:render --props="./input-props.json"
 
       - name: Upload to TikTok
         run: pnpm tsx scripts/upload-to-tiktok.ts
