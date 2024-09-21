@@ -3,8 +3,8 @@ name: Upload to TikTok inbox
 on:
   workflow_dispatch:
   schedule:
-    # Runs at 16:30 (4:30 PM) UTC every day
-    - cron: '30 16 * * *'
+    # Runs at 16:15 (4:15 PM) UTC every day
+    - cron: '15 16 * * *'
 
 jobs:
   post:
