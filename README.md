@@ -11,7 +11,7 @@ This bot creates quranic clips using [Remotion](https://www.remotion.dev/) and u
 
 ## 💻 Local Setup
 
-1. Rename `.env.sample` file to `.env` and fill your TikTok secrets and your [Cloudinary URL](https://cloudinary.com/).
+1. Rename `.env.sample` file to `.env` and fill your TikTok secrets and your [Cloudinary](https://cloudinary.com/) URL.
 
 > [!IMPORTANT]  
 > You need to get your own TikTok refresh token by adding your personal account to your App sandbox and following the right steps. See [User Access Token Management](https://developers.tiktok.com/doc/oauth-user-access-token-management).
