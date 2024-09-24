@@ -7,7 +7,8 @@
     "remotion:studio": "remotion studio",
     "remotion:chrome": "remotion browser ensure",
     "remotion:render": "remotion render tiktok-video out/video.mp4",
-    "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0"
+    "lint": "tsc --noEmit && eslint --ext ts,tsx --cache --max-warnings 0",
+    "upload": "tsx scripts/upload-to-tiktok.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.209",

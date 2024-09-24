@@ -85,7 +85,7 @@ pnpm remotion:render
 After you render the `video.mp4`, you can upload it using:
 
 ```sh
-pnpm tsx scripts/upload-to-tiktok.ts
+pnpm upload
 ```
 
 > [!NOTE]  

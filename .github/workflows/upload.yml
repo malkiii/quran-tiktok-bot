@@ -43,7 +43,7 @@ jobs:
           pnpm remotion:render
 
       - name: Upload to TikTok
-        run: pnpm tsx scripts/upload-to-tiktok.ts
+        run: pnpm upload
         env:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
