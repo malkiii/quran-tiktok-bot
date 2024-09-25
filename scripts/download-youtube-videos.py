@@ -32,9 +32,10 @@ if __name__ == "__main__":
             link = line.strip()
             if link:
                 file_path = os.path.join(sys.argv[2], f'{num}.mp4')
+                uploaded_path = os.path.join(sys.argv[2], f'up_{num}.mp4')
 
                 # Skip if the file already exists
-                if os.path.exists(file_path):
+                if os.path.exists(file_path) or os.path.exists(uploaded_path):
                     continue
 
                 print(f'[{num}] Downloading "{link}" :')
