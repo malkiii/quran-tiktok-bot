@@ -14,7 +14,7 @@ jobs:
 
     environment:
       name: TikTok
-      url: https://www.tiktok.com/@holy.quran.clips
+      url: https://www.tiktok.com/@seraj.almunir
 
     steps:
       - uses: actions/checkout@master
