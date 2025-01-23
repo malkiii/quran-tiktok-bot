@@ -1,4 +1,4 @@
-# 📱 TikTok Quran bot
+# 📱 TikTok Quran bot ([@seraj.almunir](https://www.tiktok.com/@seraj.almunir))
 
 This bot creates quranic clips using [Remotion](https://www.remotion.dev/) and uploads them to TikTok using the [Content Posting API](https://developers.tiktok.com/products/content-posting-api/).
 
